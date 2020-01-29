@@ -7,7 +7,9 @@ from jax import jit
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
-# Functions
+###############
+## Functions ##
+###############
 
 def softplus(x):
     return np.log(1 + np.exp(x))
@@ -118,7 +120,3 @@ ax.set_ylabel('t')
 ax.set_zlabel('f(x,t)')
 plt.show()
 
-#plt.plot(inputs, , label='exact')
-#plt.plot(inputs, f_vect(params, inputs), label='approx')
-#plt.legend()
-#plt.show()
