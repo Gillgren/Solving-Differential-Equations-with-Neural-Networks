@@ -6,4 +6,4 @@ Differential equations, like the ODE: y'(x) = y(x), with condition y(x = 0) = 1 
 
 We can approximate y(x) by employing an Artificiall Neural Network so that ANN(x) =~ y(x). Instead of training the Neural Network where the loss function is defined by the difference between a true value and a predicted value, we train it by defining the loss function as the square of the differential equation and the square of the condition, i.e. loss = (ANN'(x) - ANN(x))² + (ANN(x = 0) - 1)². Since we can define the structure of the Neural Network, we can find the derivate of the network with respect to some input x, and we can also find the gradient of the loss function with respect to the internal parameters. 
 
-This repository contains examples of some differential equations.
+This repository contains examples of how some differential equations are solved using this method.
