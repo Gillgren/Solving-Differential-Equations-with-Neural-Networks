@@ -21,17 +21,13 @@ def sigmoid(x):
     return 1./(1. + np.exp(-x))
 
 def f(params, x, t):
-    wx = params[:80]
-    wt = params[80:160]
-    b0 = params[160:240]
-    wh1 = params[240:320]
-    wh2 = params[320:400]
-    b1 = params[400:402]
-    w2 = params[402:404]
-    b2 = params[404]
-    h = sigmoid(x*wx + t*wt + b0)
-    h2 = sigmoid(np.sum(h*wh1) + np.sum(h*wh2) + b1)
-    o = np.sum(h2*w2) + b2
+    wx = params[:100]
+    wt = params[100:200]
+    b0 = params[200:300]
+    w1 = params[300:400]
+    b1 = params[400]
+    h = softplus(x*wx + t*wt + b0)
+    o = np.sum(h*w1) + b1
     return o
 
 @jit
@@ -47,7 +43,7 @@ def loss(params, x, t):
 ##########
 
 key = random.PRNGKey(0)
-params = random.normal(key, shape=(405,))
+params = random.normal(key, shape=(401,))
 
 #-- Setting up the functions and derivatives --#
 
@@ -62,8 +58,8 @@ grad_loss = jit(grad(loss, 0))
 
 #-- Defining the domain of x, t, and bc1 --#
 
-x_values = np.linspace(0, 1, num=20)
-t_values = np.linspace(0, 10, num=20)
+x_values = np.linspace(0, 1, num=40)
+t_values = np.linspace(0, 10, num=40)
 
 x = []
 t = []
@@ -78,8 +74,8 @@ t = np.asarray(t)
 
 #-- Training parameters --#
 
-epochs = 30000
-learning_rate = 0.00001
+epochs = 100000
+learning_rate = 0.000000001
 momentum = 0.99
 velocity = 0.
 
@@ -88,6 +84,10 @@ velocity = 0.
 for epoch in range(epochs):
     if epoch % 100  == 0:
         print('epoch: %3d loss: %.6f' % (epoch, loss(params, x, t)))
+    if epoch == 1000:
+        learning_rate = 0.000001
+    if epoch == 10000:
+        learning_rate = 0.0001
     gradient = grad_loss(params + momentum*velocity, x, t)
     velocity = momentum*velocity - learning_rate*gradient
     params += velocity
