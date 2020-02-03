@@ -93,7 +93,7 @@ velocity = 0.
 for epoch in range(epochs):
     if epoch % 100  == 0:
         print('epoch: %3d loss: %.6f' % (epoch, loss(params, x, t)))
-    nest_momentum(x, t, momentum, learning_rate, velocity)
+    nest_momentum(x, t, momentum, learning_rate)
 
 #-- Plotting and comparison with analytical solution --#
 
