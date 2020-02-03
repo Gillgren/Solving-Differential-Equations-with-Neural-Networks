@@ -27,7 +27,7 @@ def f(params, x, t):
     b0 = params[200:300]
     w1 = params[300:400]
     b1 = params[400]
-    h = softplus(x*wx + t*wt + b0)
+    h = sigmoid(x*wx + t*wt + b0)
     o = np.sum(h*w1) + b1
     return o
 
