@@ -1,6 +1,6 @@
 # Solving-Differential-Equations-with-Neural-Networks
 
-In supervised learning, the loss function of a Neural Network is usually described by some property including the predicted values of a model and the true values of the model, for example: loss = (y_true - y_predicted)². The loss function is something that we want to minimize to get an optimal model, i.e. loss -> 0. 
+The loss function of a Neural Network is usually described by some property including the predicted values of a model and the true values of the model, for example: loss = (y_true - y_predicted)². The loss function is something that we want to minimize to get an optimal model, i.e. loss -> 0. 
 
 Differential equations, like the ODE: y'(x) = y(x), with condition y(x = 0) = 1 can be put on the form y'(x) - y(x) = 0, i.e. the right-hand-side of the equation can be set to zero. Here, y'(x) refers to the derivative of y with respect to x. 
 
